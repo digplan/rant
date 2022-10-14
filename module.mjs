@@ -19,6 +19,9 @@ if (!read) throw Error('must specify read')
 if (!write) throw Error('must specify write')
 
 const db = {}
+peers.split(',').forEach(peerip => {
+
+})
 
 import serve from 'instaserve'
 serve({
