@@ -1,0 +1,2 @@
+# rant
+simple node gossip
