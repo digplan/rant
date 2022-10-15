@@ -10,4 +10,4 @@ await fetch('http://localhost:3000/candidate/test:mykey', { method: 'POST', body
 await fetch('http://localhost:3000/candidate/test:mykey2', { method: 'POST', body: JSON.stringify({ a: 1 }) })
 
 
-myleader.stop()
+myleader.server.stop()
