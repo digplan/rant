@@ -1,8 +1,8 @@
 import serve from 'instaserve'
+import FS from 'node:fs'
 
 const { type, parent, subset, leader } = process.env
 let db = {}
-
 const servertypes = {}
 const followers = []
 
@@ -28,7 +28,7 @@ if (type === 'writeonly') {
     if (!getstate.ok) throw new Error('could not get state from leader') 
     db.__state__ = getstate.__state__
     serve({
-        post (r, s, data) {
+        async post (r, s, data) {
             const resp = await fetch (`http://${leader}/candidate`, { body: data })
             if (resp.ok) {
                 followers.forEach(follower => {
@@ -44,10 +44,12 @@ if (type === 'writeonly') {
         nupdate (r, s, data) {
             const key = r.url.split('/').pop()
             db[key] = data
-        })
+        }
+    })
 }
 
 if (type === 'leader') {
+    db = JSON.parse(FS.readFileSync('./rant.db'))
     serve({
         state(r, s) {
             followers.push(r.socket.ip)
@@ -56,5 +58,6 @@ if (type === 'leader') {
         candidate (r, s, data) {
             const key = r.url.split('/').pop()
             db[key] = data
-        })
+        }
+    })
 }
