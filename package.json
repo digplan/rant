@@ -1,0 +1,23 @@
+{
+  "name": "rant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "module.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digplan/rant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digplan/rant/issues"
+  },
+  "homepage": "https://github.com/digplan/rant#readme",
+  "dependencies": {
+    "instaserve": "^0.1.19",
+    "instax": "^0.1.5"
+  }
+}
